@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>✦ 我们的100天 ✦</title>
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Inter:wght@300;500;700&display=swap" rel="stylesheet" />
+    <style>
+        /* ---------- 全局 ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Inter', 'Ma Shan Zheng', sans-serif;
+            background: #fcf6f0;
+            background-image: radial-gradient(circle at 30% 40%, #fff3e6 0%, #fcf6f0 70%);
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        /* ---------- 主卡片 ---------- */
+        .container {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            padding: 52px 60px 56px;
+            border-radius: 48px;
+            box-shadow: 
+                0 20px 60px rgba(180, 140, 120, 0.12),
+                0 8px 24px rgba(0, 0, 0, 0.03),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            text-align: center;
+            max-width: 640px;
+            width: 100%;
+            border: 1px solid rgba(255, 230, 215, 0.4);
+            transition: transform 0.25s ease;
+            position: relative;
+            z-index: 10;
+        }
+
+        .container:hover {
+            transform: translateY(-4px);
+        }
+
+        /* ---------- 装饰点 ---------- */
+        .dot-deco {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        .dot-deco span {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #f0e4dc;
+        }
+        .dot-deco span:nth-child(2) {
+            width: 8px;
+            height: 8px;
+            background: #e8d0c4;
+        }
+
+        /* ---------- 标题 ---------- */
+        h1 {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 20px;
+            font-weight: 400;
+            color: #b8a090;
+            letter-spacing: 6px;
+            margin-bottom: 16px;
+        }
+
+        /* ---------- 天数 ---------- */
+        .timer {
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+            gap: 8px;
+            margin: 4px 0 2px;
+        }
+
+        #days {
+            font-family: 'Inter', sans-serif;
+            font-size: 116px;
+            font-weight: 700;
+            line-height: 1;
+            color: #6b4e3a;
+            letter-spacing: -4px;
+            text-shadow: 0 4px 20px rgba(160, 120, 90, 0.08);
+        }
+
+        .label {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 30px;
+            color: #b8a090;
+            margin-left: 4px;
+        }
+
+        /* ---------- 时/分/秒 ---------- */
+        .sub-timer {
+            font-family: 'Inter', monospace;
+            font-size: 22px;
+            font-weight: 300;
+            color: #cbb8ac;
+            letter-spacing: 6px;
+            margin-top: 8px;
+            border-top: 1px solid #f0e4dc;
+            padding-top: 16px;
+        }
+        .sub-timer span {
+            min-width: 32px;
+            display: inline-block;
+        }
+
+        /* ---------- 语录 ---------- */
+        .quote {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 18px;
+            color: #d4c0b4;
+            margin: 28px 0 32px;
+            letter-spacing: 2px;
+            border-bottom: 1px solid #f0e4dc;
+            padding-bottom: 28px;
+            min-height: 50px;
+            transition: opacity 0.6s ease;
+        }
+
+        /* ---------- 照片墙 ---------- */
+        .gallery {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 36px;
+        }
+
+        .gallery img {
+            width: 76px;
+            height: 76px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #f0e4dc;
+            box-shadow: 0 4px 16px rgba(160, 130, 110, 0.06);
+            transition: all 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+            border-color: #e8c8b8;
+            box-shadow: 0 8px 24px rgba(160, 130, 110, 0.10);
+        }
+
+        /* ---------- 按钮 ---------- */
+        #loveBtn {
+            background: #f5e0d8;
+            border: none;
+            padding: 16px 48px;
+            border-radius: 60px;
+            color: #7a5e4e;
+            font-size: 17px;
+            font-family: 'Ma Shan Zheng', cursive;
+            letter-spacing: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(180, 140, 120, 0.08);
+        }
+
+        #loveBtn:hover {
+            background: #f0d6cc;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 28px rgba(180, 140, 120, 0.12);
+        }
+
+        #loveBtn:active {
+            transform: scale(0.96);
+        }
+
+        /* ---------- 惊喜文字 ---------- */
+        #surprise {
+            margin-top: 28px;
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 24px;
+            color: #c28a7a;
+            transition: all 0.4s ease;
+            min-height: 50px;
+            letter-spacing: 2px;
+        }
+
+        .hidden {
+            opacity: 0;
+            transform: translateY(12px);
+            pointer-events: none;
+        }
+
+        .show {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+
+        /* ---------- 底部 ---------- */
+        .footer-tip {
+            margin-top: 30px;
+            font-size: 13px;
+            color: #dccfc8;
+            letter-spacing: 1px;
+            font-weight: 300;
+        }
+
+        /* ---------- 爱心雨 ---------- */
+        .heart-rain {
+            position: fixed;
+            top: -20px;
+            pointer-events: none;
+            z-index: 9999;
+            font-size: 28px;
+            animation: rainDown linear forwards;
+        }
+        @keyframes rainDown {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(0.6);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) rotate(720deg) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* ---------- 100天庆祝彩蛋样式 ---------- */
+        .celebration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 99999;
+            pointer-events: none; /* 允许点击穿透 */
+            animation: celebFade 0.8s ease-out forwards;
+        }
+        .celebration-text {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 72px;
+            color: #6b4e3a;
+            text-shadow: 0 0 40px rgba(200, 150, 120, 0.3), 0 8px 30px rgba(0,0,0,0.05);
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(6px);
+            padding: 30px 60px;
+            border-radius: 60px;
+            border: 1px solid rgba(255, 230, 215, 0.6);
+            box-shadow: 0 20px 60px rgba(180, 140, 120, 0.15);
+            transform: scale(0.8);
+            animation: celebPop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            letter-spacing: 6px;
+        }
+        @keyframes celebPop {
+            0% { transform: scale(0.5) rotate(-6deg); opacity: 0; }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+        @keyframes celebFade {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        /* 4秒后淡出 */
+        .celebration.fade-out {
+            animation: celebFadeOut 1.2s ease-in forwards;
+        }
+        @keyframes celebFadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; transform: scale(1.05); }
+        }
+
+        /* ---------- 自适应 ---------- */
+        @media (max-width: 480px) {
+            .container {
+                padding: 32px 24px 36px;
+            }
+            #days {
+                font-size: 80px;
+            }
+            .label {
+                font-size: 24px;
+            }
+            .sub-timer {
+                font-size: 18px;
+                letter-spacing: 4px;
+            }
+            .gallery img {
+                width: 60px;
+                height: 60px;
+            }
+            .celebration-text {
+                font-size: 36px;
+                padding: 20px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="dot-deco">
+            <span></span><span></span><span></span>
+        </div>
+
+        <h1 id="titleText">✦ 与你共度的第 ✦</h1>
+
+        <div class="timer">
+            <span id="days">0</span>
+            <span class="label" id="dayLabel">天</span>
+        </div>
+
+        <div class="sub-timer">
+            <span id="hours">00</span> &nbsp;:&nbsp;
+            <span id="minutes">00</span> &nbsp;:&nbsp;
+            <span id="seconds">00</span>
+        </div>
+
+        <p class="quote" id="quoteDisplay">“ 想把所有温柔都揉进这100天里 ”</p>
+
+        <div class="gallery">
+            <img src="https://picsum.photos/200/200?random=10" alt="photo1" />
+            <img src="https://picsum.photos/200/200?random=20" alt="photo2" />
+            <img src="https://picsum.photos/200/200?random=30" alt="photo3" />
+        </div>
+
+        <button id="loveBtn">💗 点击 接收心动</button>
+
+        <div id="surprise" class="hidden">❤ 你是我最温柔的欢喜 ❤</div>
+
+        <div class="footer-tip">— 2026 · 专属100天纪念 —</div>
+
+    </div>
+
+    <script>
+        // ============================================================
+        //  ✦ 设置你们的在一起日期 (请务必修改！) ✦
+        //  格式：new Date(年, 月-1, 日)
+        //  例如：2026年5月20日 → new Date(2026, 4, 20)
+        // ============================================================
+        const startDate = new Date(2026, 4, 20);   // 👈 改成你们的真实日期！
+
+        // ---------- 100天庆祝彩蛋的 localStorage 键名 ----------
+        const CELEBRATION_KEY = 'hundredDayCelebrated';
+
+        // ---------- 心动语录库 (自动轮播) ----------
+        const quotes = [
+            '“ 遇见你，是我所有美好故事的开始 ”',
+            '“ 宝贝，我想你啦”',
+            '“ 锤死你哦！ ”',
+            '“ 啪！我没有睡！ ”',
+            '“ 天菩萨 ！ ”',
+            '“ 想起一件事情，你今天没有说想我！ ”',
+            '“ 坦诚相待！你懂嘞！！我不想懂！！！ ”',
+        ];
+        let quoteIndex = 0;
+
+        // ---------- 计时器核心逻辑 ----------
+        function updateTimer() {
+            const now = new Date();
+            const diff = now - startDate;
+            const oneDay = 1000 * 60 * 60 * 24;
+
+            if (diff < 0) {
+                const daysToStart = Math.ceil(-diff / oneDay);
+                document.getElementById('days').textContent = daysToStart;
+                document.getElementById('dayLabel').textContent = '天后开始 ❤';
+                document.getElementById('hours').textContent = '--';
+                document.getElementById('minutes').textContent = '--';
+                document.getElementById('seconds').textContent = '--';
+                return;
+            }
+
+            const daysPassed = Math.floor(diff / oneDay);
+            const daysUntil100 = 100 - daysPassed;
+
+            let displayDays, labelText;
+
+            if (daysUntil100 > 0) {
+                displayDays = daysUntil100;
+                labelText = '天后 就是100天 ✦';
+            } else if (daysUntil100 === 0) {
+                displayDays = 100;
+                labelText = '天 ❤ 今天就是100天！';
+            } else {
+                displayDays = daysPassed;
+                labelText = '天 ❤ 爱意不止';
+                document.getElementById('titleText').innerHTML = '✦ 我们已经相爱 ✦';
+            }
+
+            document.getElementById('days').textContent = displayDays;
+            document.getElementById('dayLabel').textContent = labelText;
+
+            const msToday = diff % oneDay;
+            const hours = Math.floor(msToday / (1000 * 60 * 60));
+            const minutes = Math.floor((msToday % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((msToday % (1000 * 60)) / 1000);
+
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+
+            // ---------- 检查是否达到100天且尚未庆祝 ----------
+            if (daysPassed >= 100 && !localStorage.getItem(CELEBRATION_KEY)) {
+                celebrateHundredDay();
+                localStorage.setItem(CELEBRATION_KEY, 'true');
+            }
+        }
+
+        // ---------- 100天庆祝彩蛋 ----------
+        function celebrateHundredDay() {
+            // 1. 创建一个全屏容器
+            const container = document.createElement('div');
+            container.className = 'celebration';
+            container.innerHTML = `<div class="celebration-text">🎉 100天快乐 🎉</div>`;
+            document.body.appendChild(container);
+
+            // 2. 触发一场盛大的爱心雨（数量翻倍）
+            createHeartRain(80); // 默认40，这里翻倍
+
+            // 3. 4秒后淡出移除
+            setTimeout(() => {
+                container.classList.add('fade-out');
+                setTimeout(() => {
+                    container.remove();
+                }, 1200);
+            }, 4000);
+        }
+
+        // ---------- 增强版爱心雨（可指定数量） ----------
+        function createHeartRain(count = 40) {
+            const emojis = ['❤️', '💕', '💗', '🌸', '✨', '💖'];
+            for (let i = 0; i < count; i++) {
+                setTimeout(() => {
+                    const el = document.createElement('div');
+                    el.className = 'heart-rain';
+                    el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                    el.style.left = Math.random() * 100 + 'vw';
+                    el.style.fontSize = (16 + Math.random() * 28) + 'px';
+                    el.style.animationDuration = (2.5 + Math.random() * 3) + 's';
+                    document.body.appendChild(el);
+                    setTimeout(() => el.remove(), 6000);
+                }, i * 70);
+            }
+        }
+
+        // ---------- 每秒更新计时器 ----------
+        setInterval(updateTimer, 1000);
+        updateTimer();
+
+        // ---------- 语录自动切换 (每30秒) ----------
+        function rotateQuote() {
+            const el = document.getElementById('quoteDisplay');
+            el.style.opacity = '0';
+            setTimeout(() => {
+                quoteIndex = (quoteIndex + 1) % quotes.length;
+                el.textContent = quotes[quoteIndex];
+                el.style.opacity = '1';
+            }, 300);
+        }
+        setInterval(rotateQuote, 30000);
+
+        // ---------- 惊喜按钮 (仅控制惊喜 + 爱心雨) ----------
+        const btn = document.getElementById('loveBtn');
+        const surprise = document.getElementById('surprise');
+
+        btn.addEventListener('click', function() {
+            const isHidden = surprise.classList.contains('hidden');
+            surprise.classList.toggle('hidden');
+            surprise.classList.toggle('show');
+            this.textContent = isHidden ? '🌸 再看一眼' : '💗 点击 接收心动';
+
+            if (isHidden) {
+                createHeartRain(40); // 普通爱心雨
+            }
+        });
+
+        // ---------- 双击彩蛋 ----------
+        document.addEventListener('dblclick', function(e) {
+            for (let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    const el = document.createElement('div');
+                    el.className = 'heart-rain';
+                    el.textContent = ['❤️', '💕', '💗', '🌸', '✨', '💖'][Math.floor(Math.random() * 6)];
+                    el.style.left = (e.clientX + (Math.random() - 0.5) * 200) + 'px';
+                    el.style.fontSize = (18 + Math.random() * 24) + 'px';
+                    el.style.animationDuration = (2 + Math.random() * 2.5) + 's';
+                    document.body.appendChild(el);
+                    setTimeout(() => el.remove(), 5000);
+                }, i * 50);
+            }
+        });
+    </script>
+
+</body>
+</html>
