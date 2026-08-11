@@ -358,7 +358,7 @@
             '“ 遇见你，是我所有美好故事的开始 ”',
             '“ 宝贝，我想你啦”',
             '“ 锤死你哦！ ”',
-            '“ 啪！我没有睡！ ”',
+            '“ 啪！我没有睡着！ ”',
             '“ 天菩萨 ！ ”',
             '“ 想起一件事情，你今天没有说想我！ ”',
             '“ 坦诚相待！你懂嘞！！我不想懂！！！ ”',
@@ -458,7 +458,7 @@
         setInterval(updateTimer, 1000);
         updateTimer();
 
-        // ---------- 语录自动切换 (每30秒) ----------
+        // ---------- 语录自动切换 (每10秒) ----------
         function rotateQuote() {
             const el = document.getElementById('quoteDisplay');
             el.style.opacity = '0';
@@ -468,7 +468,7 @@
                 el.style.opacity = '1';
             }, 300);
         }
-        setInterval(rotateQuote, 30000);
+        setInterval(rotateQuote, 10000);
 
         // ---------- 惊喜按钮 (仅控制惊喜 + 爱心雨) ----------
         const btn = document.getElementById('loveBtn');
