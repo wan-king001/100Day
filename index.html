@@ -49,7 +49,6 @@
             transform: translateY(-4px);
         }
 
-        /* ---------- 装饰点 ---------- */
         .dot-deco {
             display: flex;
             justify-content: center;
@@ -68,7 +67,6 @@
             background: #e8d0c4;
         }
 
-        /* ---------- 标题 ---------- */
         h1 {
             font-family: 'Ma Shan Zheng', cursive;
             font-size: 20px;
@@ -78,7 +76,6 @@
             margin-bottom: 16px;
         }
 
-        /* ---------- 天数 ---------- */
         .timer {
             display: flex;
             justify-content: center;
@@ -104,7 +101,6 @@
             margin-left: 4px;
         }
 
-        /* ---------- 时/分/秒 ---------- */
         .sub-timer {
             font-family: 'Inter', monospace;
             font-size: 22px;
@@ -120,7 +116,6 @@
             display: inline-block;
         }
 
-        /* ---------- 语录 ---------- */
         .quote {
             font-family: 'Ma Shan Zheng', cursive;
             font-size: 18px;
@@ -133,14 +128,12 @@
             transition: opacity 0.6s ease;
         }
 
-        /* ---------- 照片墙 ---------- */
         .gallery {
             display: flex;
             justify-content: center;
             gap: 16px;
             margin-bottom: 36px;
         }
-
         .gallery img {
             width: 76px;
             height: 76px;
@@ -150,14 +143,12 @@
             box-shadow: 0 4px 16px rgba(160, 130, 110, 0.06);
             transition: all 0.3s ease;
         }
-
         .gallery img:hover {
             transform: scale(1.05);
             border-color: #e8c8b8;
             box-shadow: 0 8px 24px rgba(160, 130, 110, 0.10);
         }
 
-        /* ---------- 按钮 ---------- */
         #loveBtn {
             background: #f5e0d8;
             border: none;
@@ -171,18 +162,15 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 16px rgba(180, 140, 120, 0.08);
         }
-
         #loveBtn:hover {
             background: #f0d6cc;
             transform: translateY(-3px);
             box-shadow: 0 8px 28px rgba(180, 140, 120, 0.12);
         }
-
         #loveBtn:active {
             transform: scale(0.96);
         }
 
-        /* ---------- 惊喜文字 ---------- */
         #surprise {
             margin-top: 28px;
             font-family: 'Ma Shan Zheng', cursive;
@@ -192,19 +180,16 @@
             min-height: 50px;
             letter-spacing: 2px;
         }
-
         .hidden {
             opacity: 0;
             transform: translateY(12px);
             pointer-events: none;
         }
-
         .show {
             opacity: 1 !important;
             transform: translateY(0) !important;
         }
 
-        /* ---------- 底部 ---------- */
         .footer-tip {
             margin-top: 30px;
             font-size: 13px;
@@ -233,7 +218,7 @@
             }
         }
 
-        /* ---------- 100天庆祝彩蛋样式 ---------- */
+        /* ---------- 100天庆祝大标题 ---------- */
         .celebration {
             position: fixed;
             top: 0;
@@ -244,7 +229,7 @@
             justify-content: center;
             align-items: center;
             z-index: 99999;
-            pointer-events: none; /* 允许点击穿透 */
+            pointer-events: none;
             animation: celebFade 0.8s ease-out forwards;
         }
         .celebration-text {
@@ -270,13 +255,134 @@
             0% { opacity: 0; }
             100% { opacity: 1; }
         }
-        /* 4秒后淡出 */
         .celebration.fade-out {
             animation: celebFadeOut 1.2s ease-in forwards;
         }
         @keyframes celebFadeOut {
             0% { opacity: 1; }
             100% { opacity: 0; transform: scale(1.05); }
+        }
+
+        /* ---------- 情书卡片 ---------- */
+        .letter-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 99998;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            pointer-events: none; /* 默认不可点，显示后改为 auto */
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+        }
+        .letter-overlay.show {
+            pointer-events: auto;
+            opacity: 1;
+        }
+        .letter-card {
+            background: rgba(255, 248, 242, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 48px;
+            padding: 40px 48px 36px;
+            max-width: 560px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            border: 1px solid rgba(255, 230, 215, 0.6);
+            box-shadow: 0 30px 80px rgba(180, 140, 120, 0.25);
+            transform: translateY(30px) scale(0.95);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: left;
+            position: relative;
+        }
+        .letter-overlay.show .letter-card {
+            transform: translateY(0) scale(1);
+        }
+        .letter-card h2 {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 28px;
+            color: #6b4e3a;
+            text-align: center;
+            border-bottom: 2px solid #f0e4dc;
+            padding-bottom: 16px;
+            margin-bottom: 20px;
+            letter-spacing: 4px;
+        }
+        .letter-content {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 20px;
+            line-height: 1.8;
+            color: #5a4032;
+            white-space: pre-wrap;
+            word-break: break-word;
+            margin-bottom: 28px;
+            min-height: 100px;
+        }
+        .letter-close {
+            display: block;
+            margin: 0 auto;
+            background: #f5e0d8;
+            border: none;
+            padding: 12px 36px;
+            border-radius: 60px;
+            color: #7a5e4e;
+            font-size: 18px;
+            font-family: 'Ma Shan Zheng', cursive;
+            letter-spacing: 3px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 16px rgba(180, 140, 120, 0.08);
+        }
+        .letter-close:hover {
+            background: #f0d6cc;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(180, 140, 120, 0.12);
+        }
+        .letter-close:active {
+            transform: scale(0.96);
+        }
+
+        /* ---------- 音乐控制按钮 ---------- */
+        .music-control {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 230, 215, 0.5);
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(180, 140, 120, 0.12);
+            transition: all 0.25s ease;
+            color: #7a5e4e;
+            user-select: none;
+        }
+        .music-control:hover {
+            transform: scale(1.08);
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 8px 24px rgba(180, 140, 120, 0.18);
+        }
+        .music-control:active {
+            transform: scale(0.92);
+        }
+        .music-control.playing {
+            background: rgba(245, 224, 216, 0.8);
+            border-color: #e8c8b8;
         }
 
         /* ---------- 自适应 ---------- */
@@ -302,70 +408,112 @@
                 font-size: 36px;
                 padding: 20px 30px;
             }
+            .music-control {
+                bottom: 20px;
+                right: 20px;
+                width: 48px;
+                height: 48px;
+                font-size: 22px;
+            }
+            .letter-card {
+                padding: 28px 20px 28px;
+            }
+            .letter-content {
+                font-size: 17px;
+            }
+            .letter-card h2 {
+                font-size: 24px;
+            }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-
         <div class="dot-deco">
             <span></span><span></span><span></span>
         </div>
-
         <h1 id="titleText">✦ 与你共度的第 ✦</h1>
-
         <div class="timer">
             <span id="days">0</span>
             <span class="label" id="dayLabel">天</span>
         </div>
-
         <div class="sub-timer">
             <span id="hours">00</span> &nbsp;:&nbsp;
             <span id="minutes">00</span> &nbsp;:&nbsp;
             <span id="seconds">00</span>
         </div>
-
         <p class="quote" id="quoteDisplay">“ 想把所有温柔都揉进这100天里 ”</p>
-
         <div class="gallery">
-            <img src="https://picsum.photos/200/200?random=10" alt="photo1" />
-            <img src="https://picsum.photos/200/200?random=20" alt="photo2" />
-            <img src="https://picsum.photos/200/200?random=30" alt="photo3" />
+            <img src="photos\1.jpg?random=10" alt="photo1" />
+            <img src="photos\3.jpg?random=20" alt="photo2" />
+            <img src="photos\2.jpg?random=30" alt="photo3" />
         </div>
-
         <button id="loveBtn">💗 点击 接收心动</button>
-
         <div id="surprise" class="hidden">❤ 你是我最温柔的欢喜 ❤</div>
-
         <div class="footer-tip">— 2026 · 专属100天纪念 —</div>
-
     </div>
+
+    <!-- ========== 背景音乐（全局） ========== -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="music\青花瓷 (DJ版)-周杰伦.mp3" type="audio/mpeg" />
+    </audio>
+
+    <!-- ========== 彩蛋独立音乐（庆祝专用） ========== -->
+    <audio id="celebrationMusic" preload="auto">
+        <source src="music\张超 - 我在贵州等你.mp3" type="audio/mpeg" />
+    </audio>
+
+    <!-- 音乐控制按钮 -->
+    <div class="music-control" id="musicToggle" title="播放/暂停背景音乐">🎵</div>
 
     <script>
         // ============================================================
-        //  ✦ 设置你们的在一起日期 (请务必修改！) ✦
-        //  格式：new Date(年, 月-1, 日)
-        //  例如：2026年5月20日 → new Date(2026, 4, 20)
+        //  ✦ 在这里修改你们的在一起日期 ✦
+        //  格式：new Date(年, 月-1, 日)  例：2026年5月20日 → new Date(2026, 4, 20)
         // ============================================================
         const startDate = new Date(2026, 4, 20);   // 👈 改成你们的真实日期！
 
-        // ---------- 100天庆祝彩蛋的 localStorage 键名 ----------
+        // ============================================================
+        //  ✦ 情书内容（支持换行，用 \n 或者直接写多行字符串） ✦
+        // ============================================================
+        const LOVE_LETTER = `
+亲爱的 宝：
+
+这 100 天，像一场温柔的梦。
+从第一眼的心动，到现在的默契，
+每一天都被你点亮。
+
+谢谢你愿意陪我一起幼稚，
+也谢谢你在我低落时给我拥抱。
+你是我疲惫生活里的糖，
+也是我向前走的全部勇气。
+
+未来还有无数个 100 天，
+我想和你一起慢慢走。
+
+100 天快乐，我的女孩。
+
+—— 永远爱你的 松
+        `.trim();
+
+        // ============================================================
+        //  以下代码保持不变
+        // ============================================================
         const CELEBRATION_KEY = 'hundredDayCelebrated';
 
-        // ---------- 心动语录库 (自动轮播) ----------
         const quotes = [
             '“ 遇见你，是我所有美好故事的开始 ”',
             '“ 宝贝，我想你啦”',
             '“ 锤死你哦！ ”',
             '“ 啪！我没有睡着！ ”',
             '“ 天菩萨 ！ ”',
-            '“ 想起一件事情，你今天没有说想我！ ”',
+            '“ 你今天没有说想我！ ”',
             '“ 坦诚相待！你懂嘞！！我不想懂！！！ ”',
         ];
         let quoteIndex = 0;
 
-        // ---------- 计时器核心逻辑 ----------
+        // ---------- 计时器 ----------
         function updateTimer() {
             const now = new Date();
             const diff = now - startDate;
@@ -410,34 +558,13 @@
             document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
             document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
 
-            // ---------- 检查是否达到100天且尚未庆祝 ----------
             if (daysPassed >= 100 && !localStorage.getItem(CELEBRATION_KEY)) {
                 celebrateHundredDay();
                 localStorage.setItem(CELEBRATION_KEY, 'true');
             }
         }
 
-        // ---------- 100天庆祝彩蛋 ----------
-        function celebrateHundredDay() {
-            // 1. 创建一个全屏容器
-            const container = document.createElement('div');
-            container.className = 'celebration';
-            container.innerHTML = `<div class="celebration-text">🎉 100天快乐 🎉</div>`;
-            document.body.appendChild(container);
-
-            // 2. 触发一场盛大的爱心雨（数量翻倍）
-            createHeartRain(80); // 默认40，这里翻倍
-
-            // 3. 4秒后淡出移除
-            setTimeout(() => {
-                container.classList.add('fade-out');
-                setTimeout(() => {
-                    container.remove();
-                }, 1200);
-            }, 4000);
-        }
-
-        // ---------- 增强版爱心雨（可指定数量） ----------
+        // ---------- 爱心雨 ----------
         function createHeartRain(count = 40) {
             const emojis = ['❤️', '💕', '💗', '🌸', '✨', '💖'];
             for (let i = 0; i < count; i++) {
@@ -454,11 +581,100 @@
             }
         }
 
-        // ---------- 每秒更新计时器 ----------
+        // ---------- 彩蛋：大标题 + 爱心雨 + 音乐 + 情书 ----------
+        let wasGlobalPlaying = false;
+        let celebrationMusicPlaying = false;
+
+        function celebrateHundredDay() {
+            const bgAudio = document.getElementById('bgMusic');
+            wasGlobalPlaying = !bgAudio.paused;
+            if (wasGlobalPlaying) {
+                bgAudio.pause();
+                document.getElementById('musicToggle').classList.remove('playing');
+                document.getElementById('musicToggle').textContent = '🎵';
+            }
+
+            const celebAudio = document.getElementById('celebrationMusic');
+            celebAudio.currentTime = 0;
+            celebAudio.play().then(() => {
+                celebrationMusicPlaying = true;
+            }).catch(() => {});
+
+            // 显示大标题
+            const container = document.createElement('div');
+            container.className = 'celebration';
+            container.innerHTML = `<div class="celebration-text">🎉 100天快乐 🎉</div>`;
+            document.body.appendChild(container);
+            createHeartRain(80);
+
+            // 4秒后标题淡出，然后显示情书
+            setTimeout(() => {
+                container.classList.add('fade-out');
+                setTimeout(() => {
+                    container.remove();
+                    // 显示情书
+                    showLetter();
+                }, 1200);
+            }, 4000);
+        }
+
+        // ---------- 显示情书 ----------
+        function showLetter() {
+            // 创建遮罩
+            const overlay = document.createElement('div');
+            overlay.className = 'letter-overlay';
+            overlay.innerHTML = `
+                <div class="letter-card">
+                    <h2>💌 给你的情书</h2>
+                    <div class="letter-content">${LOVE_LETTER.replace(/\n/g, '<br>')}</div>
+                    <button class="letter-close" id="closeLetterBtn">💕 关闭情书</button>
+                </div>
+            `;
+            document.body.appendChild(overlay);
+
+            // 强制重排后添加 show 类实现动画
+            requestAnimationFrame(() => {
+                overlay.classList.add('show');
+            });
+
+            // 关闭按钮事件
+            const closeBtn = overlay.querySelector('#closeLetterBtn');
+            closeBtn.addEventListener('click', function() {
+                closeLetter(overlay);
+            });
+
+            // 也可以点击遮罩空白处关闭（但为了防止误触，只允许点击按钮关闭）
+            // 如果需要，可以加上，但为了体验，只让按钮关闭。
+        }
+
+        function closeLetter(overlay) {
+            // 移除情书
+            overlay.classList.remove('show');
+            setTimeout(() => {
+                overlay.remove();
+            }, 400);
+
+            // 停止彩蛋音乐
+            const celebAudio = document.getElementById('celebrationMusic');
+            celebAudio.pause();
+            celebAudio.currentTime = 0;
+            celebrationMusicPlaying = false;
+
+            // 恢复全局背景音乐（如果之前是播放状态）
+            if (wasGlobalPlaying) {
+                const bgAudio = document.getElementById('bgMusic');
+                bgAudio.play().then(() => {
+                    document.getElementById('musicToggle').classList.add('playing');
+                    document.getElementById('musicToggle').textContent = '🔊';
+                }).catch(() => {});
+            }
+        }
+
+        // ---------- 定时更新 ----------
         setInterval(updateTimer, 1000);
         updateTimer();
 
-        // ---------- 语录自动切换 (每10秒) ----------
+        // ---------- 语录轮换 ----------
         function rotateQuote() {
             const el = document.getElementById('quoteDisplay');
             el.style.opacity = '0';
@@ -468,25 +684,32 @@
                 el.style.opacity = '1';
             }, 300);
         }
-        setInterval(rotateQuote, 10000);
+        setInterval(rotateQuote, 8000);
 
-        // ---------- 惊喜按钮 (仅控制惊喜 + 爱心雨) ----------
+        // ---------- 惊喜按钮 ----------
         const btn = document.getElementById('loveBtn');
         const surprise = document.getElementById('surprise');
-
         btn.addEventListener('click', function() {
             const isHidden = surprise.classList.contains('hidden');
             surprise.classList.toggle('hidden');
             surprise.classList.toggle('show');
             this.textContent = isHidden ? '🌸 再看一眼' : '💗 点击 接收心动';
-
             if (isHidden) {
-                createHeartRain(40); // 普通爱心雨
+                createHeartRain(40);
             }
         });
 
-        // ---------- 双击彩蛋 ----------
+        // ---------- 双击普通爱心雨 ----------
         document.addEventListener('dblclick', function(e) {
+            // 排除点击右下角调试区域（避免干扰）
+            const rect = {
+                left: window.innerWidth - 200,
+                top: window.innerHeight - 200,
+                right: window.innerWidth,
+                bottom: window.innerHeight
+            };
+            if (e.clientX > rect.left && e.clientY > rect.top) return;
+
             for (let i = 0; i < 15; i++) {
                 setTimeout(() => {
                     const el = document.createElement('div');
@@ -500,7 +723,64 @@
                 }, i * 50);
             }
         });
-    </script>
 
+        // ---------- 背景音乐控制 ----------
+        const audio = document.getElementById('bgMusic');
+        const musicToggle = document.getElementById('musicToggle');
+
+        let autoPlayAttempted = false;
+        function tryAutoPlay() {
+            if (autoPlayAttempted) return;
+            autoPlayAttempted = true;
+            audio.play().then(() => {
+                musicToggle.classList.add('playing');
+                musicToggle.textContent = '🔊';
+            }).catch(() => {});
+        }
+        document.addEventListener('click', tryAutoPlay, { once: true });
+
+        musicToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (audio.paused) {
+                audio.play().then(() => {
+                    this.classList.add('playing');
+                    this.textContent = '🔊';
+                }).catch(() => {
+                    alert('播放失败，请检查音乐链接是否有效。');
+                });
+            } else {
+                audio.pause();
+                this.classList.remove('playing');
+                this.textContent = '🎵';
+            }
+        });
+
+        // ---------- 调试：双击右下角强制触发彩蛋（包含情书） ----------
+        document.addEventListener('dblclick', function(e) {
+            const rect = {
+                left: window.innerWidth - 200,
+                top: window.innerHeight - 200,
+                right: window.innerWidth,
+                bottom: window.innerHeight
+            };
+            if (e.clientX > rect.left && e.clientY > rect.top) {
+                const already = localStorage.getItem(CELEBRATION_KEY);
+                if (already) {
+                    alert('彩蛋已经触发过啦！\n如果想再次测试，在控制台输入：localStorage.removeItem("hundredDayCelebrated")');
+                } else {
+                    const now = new Date();
+                    const diff = now - startDate;
+                    const daysPassed = Math.floor(diff / (1000 * 60 * 60 * 24));
+                    if (daysPassed >= 100) {
+                        celebrateHundredDay();
+                        localStorage.setItem(CELEBRATION_KEY, 'true');
+                        alert('🎉 已强制触发彩蛋（含情书）！');
+                    } else {
+                        alert(`当前已过 ${daysPassed} 天，还未达到 100 天，无法触发彩蛋。`);
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>
